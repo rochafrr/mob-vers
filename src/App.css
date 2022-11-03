@@ -46,7 +46,7 @@ background: linear-gradient(90deg, rgba(0,21,36,1) 0%, rgba(15,42,10,1) 39%, rgb
   max-width: 300px;
   height:85px;
   margin: 30px;
-  margin-left: 15%;
+  margin-left: 18%;
   background: rgb(2,0,36);
   background: linear-gradient(90deg, rgba(2,0,36,1) 0%, rgba(0,0,17,1) 35%, rgba(9,62,73,1) 100%);
   border-radius: 5px;
@@ -103,7 +103,7 @@ background: linear-gradient(90deg, rgba(0,21,36,1) 0%, rgba(15,42,10,1) 39%, rgb
 
 table{
   text-align: center;
-  width: 80%;
+  max-width: 200px;
   min-width: 300px;
   margin:auto;
   
@@ -120,22 +120,24 @@ th{
 
 .id{
   font-size: 20px;
-  width: 200px;
+  max-width: 200px;
 
 }
 
 .block{
   font-size: 20px;
-  width: 200px;
+  max-width: 200px;
 }
 .amount{
   font-size: 20px;
-  width: 200px;
+  max-width: 200px;
 }
 
 .Burn{
- margin: 40px;
- background: rgb(0,21,36);
+max-width: 300px ;
+margin: 40px;
+margin-left: 17%;
+background: rgb(0,21,36);
 background: linear-gradient(90deg, rgba(0,21,36,1) 0%, rgba(17,17,0,1) 39%, rgba(73,72,9,1) 100%);
 border-radius: 20px;
 padding: 20px;
