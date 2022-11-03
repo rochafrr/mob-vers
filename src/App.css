@@ -42,7 +42,7 @@ background: linear-gradient(90deg, rgba(0,21,36,1) 0%, rgba(15,42,10,1) 39%, rgb
     transform: rotate(360deg);
   }
 }
-.coin .Name{
+..Name{
   max-width: 250px;
   font-size:13px;
   padding:6px;
