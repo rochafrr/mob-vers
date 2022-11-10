@@ -4,10 +4,10 @@ import Coin from "./components/Coin";
  
 function App() { 
   const [ totalSupply, setTotalSupply ] = useState() 
-  const [ circulatingSupply, setCirculatingSupply ] = useState() 
-  const [ staking, setStaking ] = useState() 
+  const [ staking, setStaking ] = useState()
+  const [ pool, setPool ] = useState() 
   const [ latestBlock , setLatestBlock ] = useState() 
-   const [ burn , setBurn ] = useState([]) 
+  const [ burn , setBurn ] = useState([]) 
    
   useEffect(() => { 
     fetchData1(); 
@@ -28,11 +28,13 @@ function App() {
     } 
   } 
  
+ 
+ 
   const fetchData2 = async () => { 
     try { 
-      const data2 = await fetch("https://fcd.terra.dev/v1/circulatingsupply/luna"); 
+      const data2 = await fetch("https://lcd.terra.dev/cosmos/staking/v1beta1/pool"); 
       const result2 = await data2.json(); 
-      setCirculatingSupply(result2) 
+      setStaking(result2.pool.bonded_tokens ); 
     } catch (err) { 
       console.error(err); 
     } 
@@ -40,23 +42,33 @@ function App() {
  
   const fetchData3 = async () => { 
     try { 
-      const data3 = await fetch("https://lcd.terra.dev/cosmos/staking/v1beta1/pool"); 
+      const data3 = await fetch("https://fcd.terra.dev/blocks/latest"); 
       const result3 = await data3.json(); 
-      setStaking(result3.pool.bonded_tokens ); 
+      setLatestBlock(result3.block.header.height) 
     } catch (err) { 
       console.error(err); 
     } 
   } 
- 
-  const fetchData4 = async () => { 
-    try { 
-      const data4 = await fetch("https://fcd.terra.dev/blocks/latest"); 
-      const result4 = await data4.json(); 
-      setLatestBlock(result4.block.header.height) 
-    } catch (err) { 
-      console.error(err); 
-    } 
-  } 
+
+  const fetchData4 = async () => {
+    try {
+      const data4 = await fetch("https://lcd.terra.dev/cosmos/distribution/v1beta1/community_pool");
+      const result4 = await data4.json();
+      const luncCommunityPool = result4.pool.filter(
+        (coin) => coin.denom === 'uluna',
+      )[0].amount;
+      setPool(luncCommunityPool);
+      console.log(luncCommunityPool);
+    
+     
+    
+      
+    } catch (err) {
+      console.error(err);
+    }
+  }
+
+
  
   const fetchData5 = async () => {
     try {
@@ -99,7 +111,7 @@ function App() {
     <div className="App"> 
       <Coin 
         TotalSupply={totalSupply} 
-        CirculatingSupply={circulatingSupply} 
+        Pool={pool}
         Staking={staking} 
         BlockHeight={latestBlock} 
         Burn={burn} 
