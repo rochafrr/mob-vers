@@ -79,6 +79,19 @@ background: linear-gradient(90deg, rgba(0,21,36,1) 0%, rgba(15,42,10,1) 39%, rgb
   text-align: center;
 }
 
+.pool{
+  max-width: 230px;
+  height:80px;
+  margin-top: 10px;
+  padding:10px;
+  margin-left: 20%;
+  background: rgb(2,0,36);
+  background: linear-gradient(90deg, rgba(2,0,36,1) 0%, rgba(0,0,17,1) 35%, rgba(9,62,73,1) 100%);
+  border-radius: 15px;
+  text-align: center;
+}
+
+
 .Staking{
   max-width: 230px;
   height:80px;
