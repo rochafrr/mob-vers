@@ -7,14 +7,14 @@ function App() {
   const [ staking, setStaking ] = useState()
   const [ pool, setPool ] = useState() 
   const [ latestBlock , setLatestBlock ] = useState() 
-  const [ burn , setBurn ] = useState([]) 
+ 
    
   useEffect(() => { 
     fetchData1(); 
     fetchData2(); 
     fetchData3(); 
     fetchData4(); 
-    fetchData5(); 
+     
     
   }, []); 
  
@@ -70,39 +70,7 @@ function App() {
 
 
  
-  const fetchData5 = async () => {
-    try {
-      const data5 = await fetch('https://fcd.terra.dev/v1/txs?account=terra1sk06e3dyexuq4shw77y3dsv480xv42mq73anxu');
-      const result5 = await data5.json();
-      const burnList = result5.txs.map((tx) => {
-        console.log(tx)
-        if (tx.tx.value.msg[0].type === 'wasm/MsgExecuteContract') {
-          return {
-            chainId: tx.chainId,
-            height: tx.height,
-            amount: tx.tx.value.msg[0].value.coins[0].amount,
-          };
-        } else if (tx.tx.value.msg[0].type === 'bank/MsgSend') {
-          return {
-            chainId: tx.chainId,
-            height: tx.height,
-            amount: tx.tx.value.msg[0].value.amount[0].amount,
-          };
-        } else {
-          return {
-            chainId: tx.chainId,
-            height: tx.height,
-            amount: 0,
-          };
-        }
-      });
-      setBurn(burnList);
-      console.log(burnList);
-    } catch (err) {
-      console.error(err);
-    }
-  }; 
-
+ 
  
 
  
@@ -114,7 +82,7 @@ function App() {
         Pool={pool}
         Staking={staking} 
         BlockHeight={latestBlock} 
-        Burn={burn} 
+        
       /> 
     </div> 
    );  
